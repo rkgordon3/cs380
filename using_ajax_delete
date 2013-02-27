@@ -1,3 +1,5 @@
+0. add respond_to :html, :js to controller
+modify action to use responds_with(@model)
 1. wrap to-be-deleted in div
 div should have well-known id
 use a helper
@@ -7,3 +9,4 @@ That gives :
 Processing by CustomersController#destroy as JS
 :
 3. add .js format target to controller
+4. create action.js.erb

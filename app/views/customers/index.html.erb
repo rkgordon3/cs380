@@ -2,6 +2,7 @@
 
 <table class='table-striped'>
   <tr>
+    <th><th>
     <th>ID</th>
     <th>Name</th>
     <th>Phone</th>
@@ -12,7 +13,14 @@
   </tr>
 
 <% @customers.each do |customer| %>
+
   <%= content_tag :tr, :id=> customer_index_row_div_id(customer) do %>
+  <td><button type="button" 
+              class="btn btn-danger" 
+              data-toggle="collapse" 
+              data-target="#<%= customer_index_row_detail_div_id(customer) %>" >
+simple collapsible
+</button></td>
     <td><%= customer.id %></td>
     <td><%= customer.name %></td>
     <td><%= customer.phone %></td>
@@ -24,8 +32,13 @@
                     :format => :js, 
                     data: { confirm: 'Are you sure?' } %></td>
   <% end -%>
+  <%= content_tag :tr  , :style=> "{padding:0px;}" do %>
+            <td><div  class="collapse" id="<%= customer_index_row_detail_div_id(customer) %>" >see me</div></td>
+  <% end -%>
+
 <% end %>
 </table>
+ 
 
 <br />
 

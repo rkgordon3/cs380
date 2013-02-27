@@ -15,4 +15,7 @@ module CustomersHelper
 	def customer_index_row_div_id(customer)
 		"customer_#{customer.id}"
 	end
+	def customer_index_row_detail_div_id(customer)
+		customer_index_row_div_id(customer)+"_detail"
+	end
 end

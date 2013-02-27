@@ -1,44 +1,50 @@
 <h1>Listing customers</h1>
 
-<table class='table-striped'>
-  <tr>
-    <th><th>
-    <th>ID</th>
-    <th>Name</th>
-    <th>Phone</th>
-    <th>Contact</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
 
+<% count = 0 %>
 <% @customers.each do |customer| %>
 
-  <%= content_tag :tr, :id=> customer_index_row_div_id(customer) do %>
-  <td><button type="button" 
-              class="btn btn-danger" 
+
+  <%= content_tag :div, :id=> customer_index_row_div_id(customer) do %>
+  <div class='<%= count % 2 == 0 ? "even" : "odd" %>' >
+  <i id="<%= customer_index_row_toggle_id(customer) %>"
+              class="icon-plus-sign" 
               data-toggle="collapse" 
               data-target="#<%= customer_index_row_detail_div_id(customer) %>" >
-simple collapsible
-</button></td>
-    <td><%= customer.id %></td>
-    <td><%= customer.name %></td>
-    <td><%= customer.phone %></td>
-    <td><%= customer.contact %></td>
-    <td><%= link_to 'Show', customer %></td>
-    <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
-    <td><%= link_to 'Destroy', customer, method: :delete, 
+    
+</i>
+    
+     <span class='index_cell'><%= customer.id %></span>
+     <span class='index_cell'><%= customer.name %></span>
+     <span class='index_cell'><%= customer.phone %></span>
+     <span class='index_cell'><%= customer.contact %></span>
+     <span class='index_cell'><%= link_to 'Show', customer %></span>
+     <span class='index_cell'><%= link_to 'Edit', edit_customer_path(customer) %>
+     <span class='index_cell'><%= link_to 'Destroy', customer, method: :delete, 
                     :remote=> true, 
                     :format => :js, 
-                    data: { confirm: 'Are you sure?' } %></td>
+                    data: { confirm: 'Are you sure?' } %></span>
   <% end -%>
-  <%= content_tag :tr  , :style=> "{padding:0px;}" do %>
-            <td><div  class="collapse" id="<%= customer_index_row_detail_div_id(customer) %>" >see me</div></td>
+  <% count += 1 %>
+</div>
+  <%= content_tag :div  , :style=> "{padding:12px;}" do %>
+            <br/><div  class="collapse" id="<%= customer_index_row_detail_div_id(customer) %>" ><%= render :partial =>"orders/for_customer", :locals => { :customer => customer } %></div>
   <% end -%>
 
 <% end %>
-</table>
- 
+<script>
+   
+    $('.collapse').on('hidden', function (e) {     
+      var id = '#'+e.target.id.replace(/_detail$/, "_toggle");
+      $(id).attr('class', 'icon-plus-sign');
+    
+    });
+    $('.collapse').on('shown', function (e) { 
+      var id = '#'+e.target.id.replace(/_detail$/, "_toggle");
+      $(id).attr('class', 'icon-minus-sign');
+    
+    });
+</script> 
 
 <br />
 

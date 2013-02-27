@@ -18,4 +18,8 @@ module CustomersHelper
 	def customer_index_row_detail_div_id(customer)
 		customer_index_row_div_id(customer)+"_detail"
 	end
+
+	def customer_index_row_toggle_id(customer)
+		customer_index_row_div_id(customer)+"_toggle"
+	end
 end

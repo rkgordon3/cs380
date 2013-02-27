@@ -2,7 +2,8 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
-    @orders = Order.all
+    @customer = Customer.find(params[:customer_id])
+    @orders = Order.find_by_customer_id(@customer)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -24,7 +25,10 @@ class OrdersController < ApplicationController
   # GET /orders/new
   # GET /orders/new.json
   def new
-    @order = Order.new
+    @customer  = Customer.find(params[:customer_id])
+
+    @order = Order.new(customer_id: @customer.id)
+
 
     respond_to do |format|
       format.html # new.html.erb
@@ -40,12 +44,14 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
+    @customer  = Customer.find(params[:customer_id])
+    params[:order][:customer_id] = @customer.id
     @order = Order.new(params[:order])
 
 
     respond_to do |format|
       if @order.save
-        format.html { redirect_to @order, notice: 'Order was successfully created.' }
+        format.html { redirect_to @customer, notice: 'Order was successfully created.' }
         format.json { render json: @order, status: :created, location: @order }
       else
         format.html { render action: "new" }

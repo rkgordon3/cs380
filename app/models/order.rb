@@ -1,7 +1,9 @@
 class Order < ActiveRecord::Base
   belongs_to :customer
-  has_many :items
+  belongs_to :item
 
   attr_accessible :customer_id, :item, :quantity, :total, :item_id
+
+  validates :customer_id, :presence => :true
 
   end

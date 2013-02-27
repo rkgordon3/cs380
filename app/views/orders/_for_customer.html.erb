@@ -1,0 +1,18 @@
+<% logger.debug("in for_customer with #{customer}") %>
+<% orders = Order.find_all_by_customer_id(customer.id) %>
+
+
+<table table="table-striped">
+  <tr>
+    <th>Quantity</th>
+    <th>Item</th>
+  </tr>
+
+<% orders.each do |order| %>
+  <tr>
+    <td><%= order.quantity %></td>
+    <td><%= order.item.name %></td>
+  
+  </tr>
+<% end unless orders.nil? %>
+</table>

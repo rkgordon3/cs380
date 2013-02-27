@@ -1,0 +1,7 @@
+Parameters: {"utf8"=>"✓", "authenticity_token"=>"KuVoAwm1xqliy4hQoakEoupOEy43sQummfp3gdKQpgs=", "order"=>{"quantity"=>"100", "total"=>"45", "item"=>"boots"}, "customer_name"=>"Shoe Co", "commit"=>"Create Order"}
+
+  <div class="field">
+    <%= f.label :item %><br />
+    <%= f.text_field :item %>
+  </div>
+

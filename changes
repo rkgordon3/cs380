@@ -1,0 +1,24 @@
+<%= f.number_field :total %>
+
+<input id="order_item" name="order[item]" size="30" type="text" />
+
+Parameters: {"utf8"=>"✓", "authenticity_token"=>"KuVoAwm1xqliy4hQoakEoupOEy43sQummfp3gdKQpgs=", "order"=>{"quantity"=>"10", "total"=>"10.00", "item"=>"shoes"}, "customer_name"=>"Rogans'", "commit"=>"Create Order"}
+
+Modify form, accommodate nil customer
+
+Modify order show view for input of customer name
+
+Modify controller to lookup customer
+
+Modify order index view to display customer name
+
+Modify customer show to display table of orders 
+
+Write code in seeds.rb file to create 3 customers with 3 orders each
+
+Deploy to heroku
+Make sure you populate db with seeds
+
+Send me url
+
+

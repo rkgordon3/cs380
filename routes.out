@@ -1,0 +1,28 @@
+          customers GET    /customers(.:format)                              customers#index
+                    POST   /customers(.:format)                              customers#create
+       new_customer GET    /customers/new(.:format)                          customers#new
+      edit_customer GET    /customers/:id/edit(.:format)                     customers#edit
+           customer GET    /customers/:id(.:format)                          customers#show
+                    PUT    /customers/:id(.:format)                          customers#update
+                    DELETE /customers/:id(.:format)                          customers#destroy
+             orders GET    /orders(.:format)                                 orders#index
+                    POST   /orders(.:format)                                 orders#create
+          new_order GET    /orders/new(.:format)                             orders#new
+         edit_order GET    /orders/:id/edit(.:format)                        orders#edit
+              order GET    /orders/:id(.:format)                             orders#show
+                    PUT    /orders/:id(.:format)                             orders#update
+                    DELETE /orders/:id(.:format)                             orders#destroy
+    customer_orders GET    /customers/:customer_id/orders(.:format)          orders#index
+                    POST   /customers/:customer_id/orders(.:format)          orders#create
+ new_customer_order GET    /customers/:customer_id/orders/new(.:format)      orders#new
+edit_customer_order GET    /customers/:customer_id/orders/:id/edit(.:format) orders#edit
+     customer_order GET    /customers/:customer_id/orders/:id(.:format)      orders#show
+                    PUT    /customers/:customer_id/orders/:id(.:format)      orders#update
+                    DELETE /customers/:customer_id/orders/:id(.:format)      orders#destroy
+                    GET    /customers(.:format)                              customers#index
+                    POST   /customers(.:format)                              customers#create
+                    GET    /customers/new(.:format)                          customers#new
+                    GET    /customers/:id/edit(.:format)                     customers#edit
+                    GET    /customers/:id(.:format)                          customers#show
+                    PUT    /customers/:id(.:format)                          customers#update
+                    DELETE /customers/:id(.:format)                          customers#destroy

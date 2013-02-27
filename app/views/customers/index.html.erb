@@ -1,0 +1,32 @@
+<h1>Listing customers</h1>
+
+<table class='table-striped'>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Phone</th>
+    <th>Contact</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @customers.each do |customer| %>
+  <%= content_tag :tr, :id=> customer_index_row_div_id(customer) do %>
+    <td><%= customer.id %></td>
+    <td><%= customer.name %></td>
+    <td><%= customer.phone %></td>
+    <td><%= customer.contact %></td>
+    <td><%= link_to 'Show', customer %></td>
+    <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
+    <td><%= link_to 'Destroy', customer, method: :delete, 
+                    :remote=> true, 
+                    :format => :js, 
+                    data: { confirm: 'Are you sure?' } %></td>
+  <% end -%>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Customer', new_customer_path %>

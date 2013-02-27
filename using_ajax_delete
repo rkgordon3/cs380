@@ -1,0 +1,9 @@
+1. wrap to-be-deleted in div
+div should have well-known id
+use a helper
+2. add :remote=> true to link_to
+3. add :format=>"js" to link_to
+That gives :
+Processing by CustomersController#destroy as JS
+:
+3. add .js format target to controller

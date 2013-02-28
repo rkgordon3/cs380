@@ -5,42 +5,43 @@
 <% @customers.each do |customer| %>
 
 
-  <%= content_tag :div, :id=> customer_index_row_div_id(customer) do %>
-  <div class='<%= count % 2 == 0 ? "even" : "odd" %>' >
-  <i id="<%= customer_index_row_toggle_id(customer) %>"
+  <%= content_tag :div, :id=> index_row_div_id(customer) do %>
+    <div class='<%= count % 2 == 0 ? "even" : "odd" %>' >
+        <i id="<%= index_row_toggle_id(customer) %>"
               class="icon-plus-sign" 
               data-toggle="collapse" 
-              data-target="#<%= customer_index_row_detail_div_id(customer) %>" >
-    
-</i>
-    
-     <span class='index_cell'><%= customer.id %></span>
-     <span class='index_cell'><%= customer.name %></span>
-     <span class='index_cell'><%= customer.phone %></span>
-     <span class='index_cell'><%= customer.contact %></span>
-     <span class='index_cell'><%= link_to 'Show', customer %></span>
-     <span class='index_cell'><%= link_to 'Edit', edit_customer_path(customer) %></span>
-     <span class='index_cell'><%= link_to 'Destroy', customer, method: :delete, 
+              data-target="#<%= index_row_detail_div_id(customer) %>" >
+        </i>   
+        <span class='index_cell'><%= customer.id %></span>
+        <span class='index_cell'><%= customer.name %></span>
+        <span class='index_cell'><%= customer.phone %></span>
+        <span class='index_cell'><%= customer.contact %></span>
+        <span class='index_cell'><%= link_to 'Show', customer %></span>
+        <span class='index_cell'>
+          <%= link_to 'Edit', edit_customer_path(customer) %>
+        </span>
+        <span class='index_cell'><%= link_to 'Destroy', customer, method: :delete, 
                     :remote=> true, 
                     :format => :js, 
-                    data: { confirm: 'Are you sure?' } %></span>
+                    data: { confirm: 'Are you sure?' } %></span>    
+    </div>
+    <% count += 1 %>
   <% end -%>
-  <% count += 1 %>
-</div>
-  <%= content_tag :div  , :style=> "{padding:12px;}" do %>
-            <br/><div  class="collapse" id="<%= customer_index_row_detail_div_id(customer) %>" ><%= render :partial =>"orders/for_customer", :locals => { :customer => customer } %></div>
+  <%= content_tag :div  , 
+                  :id => index_row_detail_div_id(customer), 
+                  :class=>"collapse"  do %>
+    <%= render :partial =>"orders/for_customer", :locals => { :customer => customer } %>
   <% end -%>
-
 <% end %>
 <script>
    
     $('.collapse').on('hidden', function (e) {     
-      var id = '#'+e.target.id.replace(/_detail$/, "_toggle");
+      var id = '#'+e.target.id.replace(/_detail$/, <%= "'#{detail_suffix}'" %>);
       $(id).attr('class', 'icon-plus-sign');
     
     });
     $('.collapse').on('shown', function (e) { 
-      var id = '#'+e.target.id.replace(/_detail$/, "_toggle");
+      var id = '#'+e.target.id.replace(/_detail$/, <%= "'#{toggle_suffix}'" %>;
       $(id).attr('class', 'icon-minus-sign');
     
     });

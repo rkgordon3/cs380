@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130214111005) do
+ActiveRecord::Schema.define(:version => 20130302003658) do
 
   create_table "add_total_to_orders", :force => true do |t|
     t.decimal  "total"
@@ -23,8 +23,9 @@ ActiveRecord::Schema.define(:version => 20130214111005) do
     t.string   "name"
     t.string   "phone"
     t.string   "contact"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.integer  "sales_person_id"
   end
 
   create_table "items", :force => true do |t|
@@ -41,6 +42,12 @@ ActiveRecord::Schema.define(:version => 20130214111005) do
     t.datetime "updated_at",  :null => false
     t.decimal  "total"
     t.integer  "item_id"
+  end
+
+  create_table "sales_people", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
 end
